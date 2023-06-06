@@ -1,10 +1,10 @@
 ### Hi there 👋
-
+https://badge42.vercel.app/api/v2/clelyxqpk00060fmfjzv3sr8a/stats?cursusId=21&coalitionId=167
 <!--
 **sunnnwo/sunnnwo** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
 Here are some ideas to get you started:
-https://badge42.vercel.app/api/v2/clelyxqpk00060fmfjzv3sr8a/stats?cursusId=21&coalitionId=167
+
 - 🔭 I’m currently working on ...
 - 🌱 I’m currently learning ...
 - 👯 I’m looking to collaborate on ...
