@@ -1,5 +1,5 @@
 ### Hi there 👋
-https://badge42.vercel.app/api/v2/clelyxqpk00060fmfjzv3sr8a/stats?cursusId=21&coalitionId=167
+<a href="https://github.com/JaeSeoKim/badge42"><img src="https://badge42.vercel.app/api/v2/clelyxqpk00060fmfjzv3sr8a/stats?cursusId=21&coalitionId=167" alt="sun-wkim's 42 stats" /></a>
 <!--
 **sunnnwo/sunnnwo** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
