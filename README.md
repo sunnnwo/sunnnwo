@@ -1,6 +1,8 @@
 
 ## Hey 👋, This is SunWoo KIM
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&theme=radical)
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=sunnnwo&layout=compact)
+
 [![Gmail Badge](https://img.shields.io/badge/-sunwkim@student.42lausanne.ch-c14438?style=flat&logo=Gmail&logoColor=white&link=mailto:sunwkim@student.42lausanne.ch)](mailto:sunwkim@student.42lausanne.ch) 
 
 
