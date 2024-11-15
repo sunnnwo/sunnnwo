@@ -2,9 +2,6 @@
 ## Hey 👋, This is SunWoo KIM
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&theme=radical)
 [![Gmail Badge](https://img.shields.io/badge/-sunwkim@student.42lausanne.ch-c14438?style=flat&logo=Gmail&logoColor=white&link=mailto:sunwkim@student.42lausanne.ch)](mailto:sunwkim@student.42lausanne.ch) 
-## Some of my Github Stats
-<p align=left> <img src=https://komarev.com/ghpvc/?username=sunnnwo alt=sunnnwo /> </p>
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&theme=radical)
 
 
 
