@@ -4,8 +4,7 @@
 [![Gmail Badge](https://img.shields.io/badge/-sunwkim@student.42lausanne.ch-c14438?style=flat&logo=Gmail&logoColor=white&link=mailto:sunwkim@student.42lausanne.ch)](mailto:sunwkim@student.42lausanne.ch) 
 ## Some of my Github Stats
 <p align=left> <img src=https://komarev.com/ghpvc/?username=sunnnwo alt=sunnnwo /> </p>
-
-[![Github stats](https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&include_all_commits=true)](https://github.com/sunnnwo/github-readme-stats)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&theme=radical)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=sunnnwo&layout=compact)](https://github.com/sunnnwo/github-readme-stats)
 
 
