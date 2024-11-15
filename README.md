@@ -2,8 +2,6 @@
 ### Hi there 👋
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&theme=radical)
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=sunnnwo&layout=compact)
-## Hey 👋, This is SunwooKim
-[![Gmail Badge](https://img.shields.io/badge/-Sunnnwo@naver.com-c14438?style=flat&logo=Gmail&logoColor=white&link=mailto:Sunnnwo@naver.com)](mailto:Sunnnwo@naver.com) 
 ## Hey 👋, This is SunWoo KIM
 [![Gmail Badge](https://img.shields.io/badge/-sunwkim@student.42lausanne.ch-c14438?style=flat&logo=Gmail&logoColor=white&link=mailto:sunwkim@student.42lausanne.ch)](mailto:sunwkim@student.42lausanne.ch) 
 [![Linkedin Badge](https://img.shields.io/badge/-SUN WOO KIM-0072b1?style=flat&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/SUN WOO KIM/)](https://www.linkedin.com/in/SUN WOO KIM/) [![Github Badge](https://img.shields.io/badge/-sunnnwo-grey?style=flat&logo=github&logoColor=white&link=https://github.com/sunnnwo/)](https://www.github.com/sunnnwo/) 
