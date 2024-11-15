@@ -5,7 +5,7 @@
 ## Some of my Github Stats
 <p align=left> <img src=https://komarev.com/ghpvc/?username=sunnnwo alt=sunnnwo /> </p>
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&theme=radical)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=sunnnwo&layout=compact)](https://github.com/sunnnwo/github-readme-stats)
+
 
 
 <!--
