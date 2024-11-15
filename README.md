@@ -1,5 +1,6 @@
 ### Hi there 👋
 <a href="https://github.com/JaeSeoKim/badge42"><img src="https://badge42.vercel.app/api/v2/clelyxqpk00060fmfjzv3sr8a/stats?cursusId=21&coalitionId=167" alt="sun-wkim's 42 stats" /></a>
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?sunnnwo=anuraghazra&show_icons=true&theme=radical)
 
 <!--
 **sunnnwo/sunnnwo** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
