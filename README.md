@@ -4,6 +4,16 @@
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=sunnnwo&layout=compact)
 ## Hey 👋, This is SunwooKim
 [![Gmail Badge](https://img.shields.io/badge/-Sunnnwo@naver.com-c14438?style=flat&logo=Gmail&logoColor=white&link=mailto:Sunnnwo@naver.com)](mailto:Sunnnwo@naver.com) 
+## Hey 👋, This is SunWoo KIM
+[![Gmail Badge](https://img.shields.io/badge/-sunwkim@student.42lausanne.ch-c14438?style=flat&logo=Gmail&logoColor=white&link=mailto:sunwkim@student.42lausanne.ch)](mailto:sunwkim@student.42lausanne.ch) 
+[![Linkedin Badge](https://img.shields.io/badge/-SUN WOO KIM-0072b1?style=flat&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/SUN WOO KIM/)](https://www.linkedin.com/in/SUN WOO KIM/) [![Github Badge](https://img.shields.io/badge/-sunnnwo-grey?style=flat&logo=github&logoColor=white&link=https://github.com/sunnnwo/)](https://www.github.com/sunnnwo/) 
+## Some of my Github Stats
+<p align=left> <img src=https://komarev.com/ghpvc/?username=sunnnwo alt=sunnnwo /> </p>
+
+[![Github stats](https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&include_all_commits=true)](https://github.com/sunnnwo/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=sunnnwo&layout=compact)](https://github.com/sunnnwo/github-readme-stats)
+
+
 <!--
 **sunnnwo/sunnnwo** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
