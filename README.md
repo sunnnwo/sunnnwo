@@ -2,7 +2,8 @@
 ### Hi there 👋
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&theme=radical)
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=sunnnwo&layout=compact)
-
+## Hey 👋, This is SunwooKim
+[![Gmail Badge](https://img.shields.io/badge/-Sunnnwo@naver.com-c14438?style=flat&logo=Gmail&logoColor=white&link=mailto:Sunnnwo@naver.com)](mailto:Sunnnwo@naver.com) 
 <!--
 **sunnnwo/sunnnwo** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
