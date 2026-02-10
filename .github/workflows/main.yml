@@ -1,31 +1,4 @@
-name: Update 42 Stats
-
-on:
-  schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
-
-jobs:
-  update-stats:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Update README
-        env:
-          FT_UID: ${{ secrets.FT_UID }}
-          FT_SECRET: ${{ secrets.FT_SECRET }}
-        run: |
-          python <<EOF
+python <<EOF
           import os
           import requests
           import re
@@ -48,15 +21,27 @@ jobs:
           token = get_token()
           data = get_user_data(token)
 
-          level = data['cursus_users'][-1]['level']
-          coalition = data.get('coalition', [{}])[0].get('name', 'N/A')
-          blackhole = data['cursus_users'][-1]['blackhole_expiration_date'] or "N/A"
+          # 42 cursuses 중 Common Core(id: 21) 정보를 우선적으로 찾습니다.
+          # 만약 없으면 가장 마지막 cursus 정보를 가져옵니다.
+          cursus_info = next((c for c in data.get('cursus_users', []) if c.get('cursus_id') == 21), data.get('cursus_users', [{}])[-1])
 
-          stats_text = f"### 📊 42 Stats\n- **Level:** {level}\n- **Coalition:** {coalition}\n- **Blackhole:** {blackhole}\n"
+          level = cursus_info.get('level', '0.00')
+          blackhole = cursus_info.get('blackhole_expiration_date', 'N/A')
+          if blackhole and blackhole != 'N/A':
+              blackhole = blackhole.split('T')[0] # 날짜만 깔끔하게 출력
+          
+          # 코알리숑 정보 안전하게 가져오기
+          coalition = "N/A"
+          # 별도의 API 호출이 필요할 수 있으나 기본 정보에서 시도
+          if data.get('groups'):
+              coalition = data['groups'][0].get('name', 'N/A')
+
+          stats_text = f"### 📊 42 Stats (sunwkim)\n- **Level:** {level}\n- **Blackhole:** {blackhole}\n- **Campus:** 42 Lausanne\n"
 
           with open('README.md', 'r', encoding='utf-8') as f:
               content = f.read()
 
+          # 정규표현식을 사용하여 주석 사이의 내용 교체
           new_content = re.sub(r'.*?', 
                                f'\n{stats_text}\n', 
                                content, flags=re.DOTALL)
@@ -64,11 +49,3 @@ jobs:
           with open('README.md', 'w', encoding='utf-8') as f:
               f.write(new_content)
           EOF
-
-      - name: Commit and Push
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add README.md
-          git commit -m "Update 42 stats" || exit 0
-          git push
