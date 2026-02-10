@@ -22,16 +22,10 @@
 </div>
 [![Intra](https://img.shields.io/badge/Intra-42-black?style=flat-square&logo=42)](https://intra.42.fr/)
 [![Campus](https://img.shields.io/badge/Lausanne-Campus-white?style=flat-square&logo=googlemaps)](https://www.42lausanne.ch/)
-## 🏫 42 Lausanne Journey
 
-| Circle | Project | Status |
-| :---: | :--- | :---: |
-| **0** | Libft / Pts / Netpractice | ✅ Done |
-| **1** | get_next_line / ft_printf / born2beroot | ✅ Done |
-| **2** | push_swap / minitalk / pipex | 🚧 In Progress |
-| **3** | minishell / Philosophers | 📅 Todo |
+# 🚀 42 Journey: sunwkim
 
-> 🌌 **Blackhole:** `240 days left`
-
+### 📊 My 42 Stats
+(데이터를 불러오는 중입니다...)
 
 
