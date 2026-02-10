@@ -1,0 +1,26 @@
+name: Update 42 Stats
+
+on:
+  schedule:
+    # 매일 자정에 자동으로 업데이트 (UTC 기준)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 수동으로도 실행 가능하게 설정
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Update 42 Profile Readme
+        uses: JaeSeoKim/42-profile-readme@v2.3.1
+        with:
+          ft_api_uid: ${{ secrets.FT_UID }}
+          ft_api_secret: ${{ secrets.FT_SECRET }}
+          user_id: sunwkim
+          # README.md 파일 경로
+          readme_path: README.md
+          # 주석 키워드 설정
+          start_tag: ''
+          end_tag: ''
