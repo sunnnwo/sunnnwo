@@ -12,12 +12,63 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Update 42 Profile Readme
-        uses: JaeSeoKim/42-profile-readme@v2.3.1
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          ft_api_uid: ${{ secrets.FT_UID }}
-          ft_api_secret: ${{ secrets.FT_SECRET }}
-          user_id: sunwkim
-          readme_path: README.md
-          start_tag: ''
-          end_tag: ''
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Update README
+        env:
+          FT_UID: ${{ secrets.FT_UID }}
+          FT_SECRET: ${{ secrets.FT_SECRET }}
+        run: |
+          python <<EOF
+          import os
+          import requests
+          import re
+
+          def get_token():
+              uid = os.getenv('FT_UID')
+              secret = os.getenv('FT_SECRET')
+              response = requests.post('https://api.intra.42.fr/oauth/token', data={
+                  'grant_type': 'client_credentials',
+                  'client_id': uid,
+                  'client_secret': secret
+              })
+              return response.json()['access_token']
+
+          def get_user_data(token):
+              headers = {'Authorization': f'Bearer {token}'}
+              response = requests.get('https://api.intra.42.fr/v2/users/sunwkim', headers=headers)
+              return response.json()
+
+          token = get_token()
+          data = get_user_data(token)
+
+          level = data['cursus_users'][-1]['level']
+          coalition = data.get('coalition', [{}])[0].get('name', 'N/A')
+          blackhole = data['cursus_users'][-1]['blackhole_expiration_date'] or "N/A"
+
+          stats_text = f"### 📊 42 Stats\n- **Level:** {level}\n- **Coalition:** {coalition}\n- **Blackhole:** {blackhole}\n"
+
+          with open('README.md', 'r', encoding='utf-8') as f:
+              content = f.read()
+
+          new_content = re.sub(r'.*?', 
+                               f'\n{stats_text}\n', 
+                               content, flags=re.DOTALL)
+
+          with open('README.md', 'w', encoding='utf-8') as f:
+              f.write(new_content)
+          EOF
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git commit -m "Update 42 stats" || exit 0
+          git push
