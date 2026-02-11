@@ -1,35 +1,15 @@
-<div align="center">
-  <img src="https://img.shields.io/badge/42-Lausanne-black?style=for-the-badge&logo=42" />
-  <h1>🚀 Hello, I'm sunwkim!</h1>
-  <p>Software Engineering Student at <b>42 Lausanne</b></p>
-</div>
-
----
-
-### 💻 42 Journey
-| Category | Information |
-| :--- | :--- |
-| **Level** | 10.42 (Common Core Completed ✅) |
-| **Blackhole** | 🌌 Completed (Infinite) |
-| **Status** | Outer Circle Explorer |
-
----
-
-### 🛠 Tech Stack
-**Languages** ![C](https://img.shields.io/badge/C-00599C?style=flat-square&logo=c&logoColor=white) ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=c%2B%2B&logoColor=white) ![Shell](https://img.shields.io/badge/Shell-FFD500?style=flat-square&logo=gnu-bash&logoColor=black)
-
-**Tools** ![Vim](https://img.shields.io/badge/Vim-019733?style=flat-square&logo=vim&logoColor=white) ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white) ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
-
----
-
 ### 📈 GitHub Activities
 <div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&theme=dark&hide_border=true&cache_seconds=86400" alt="stats" />
-  <br/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=sunnnwo&theme=dark&hide_border=true" alt="streak" />
+  <img src="https://img.shields.io/github/followers/sunnnwo?label=Followers&style=for-the-badge&color=24292e" />
+  <img src="https://img.shields.io/github/stars/sunnnwo?label=Total%20Stars&style=for-the-badge&color=24292e" />
+  <br/><br/>
+
+  <img src="https://metrics.lecoq.io/sunnnwo?template=classic&base=header%2C%20activity%2C%20community%2C%20repositories%2C%20metadata&config.timezone=Europe%2FZurich" alt="GitHub Metrics" />
 </div>
 
 ---
 
-### 📬 Connect
-[![Gmail](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:sunwkim@student.42lausanne.ch)
+### 🎨 Contribution Graph (Snake Game)
+<div align="center">
+  <img src="https://raw.githubusercontent.com/sunnnwo/sunnnwo/output/github-contribution-grid-snake.svg" alt="Snake animation" />
+</div>
