@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://img.shields.io/badge/42-Lausanne-black?style=for-the-badge&logo=42" />
-  <h1>🚀 Hello, I'm sunwkim!</h1>
+  <h1>🚀 Hello, I'm sunwkim 🇰🇷</h1>
   <p>Software Engineering Student at <b>42 Lausanne</b></p>
 </div>
 
