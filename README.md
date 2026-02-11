@@ -24,16 +24,9 @@
 
 ### 📈 GitHub Activities
 <div align="center">
-  <img src="https://github-readme-stats-git-masterhstq-anuraghazras-projects.vercel.app/api?username=sunnnwo&show_icons=true&theme=transparent" alt="sunwkim stats" />
+  <img src="https://github-readme-stats.vercel.app/api?username=sunnnwo&show_icons=true&theme=dark&hide_border=true&cache_seconds=86400" alt="stats" />
   <br/>
-  <img src="https://github-readme-stats-git-masterhstq-anuraghazras-projects.vercel.app/api/top-langs/?username=sunnnwo&layout=compact&theme=transparent" alt="top langs" />
-</div>
-
----
-
-### 🏆 Trophies
-<div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=sunnnwo&theme=onedark&column=7&margin-w=15" width="100%" alt="trophies" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=sunnnwo&theme=dark&hide_border=true" alt="streak" />
 </div>
 
 ---
