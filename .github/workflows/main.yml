@@ -27,42 +27,41 @@ jobs:
         run: |
           python -c "
           import os, requests, re
-          uid = os.getenv('FT_UID')
-          secret = os.getenv('FT_SECRET')
+          uid, secret = os.getenv('FT_UID'), os.getenv('FT_SECRET')
           
-          # 토큰 발급
-          res_token = requests.post('https://api.intra.42.fr/oauth/token', data={'grant_type': 'client_credentials', 'client_id': uid, 'client_secret': secret})
-          token = res_token.json().get('access_token')
+          # 1. API Token 발급
+          token_res = requests.post('https://api.intra.42.fr/oauth/token', data={'grant_type': 'client_credentials', 'client_id': uid, 'client_secret': secret})
+          token = token_res.json().get('access_token')
           
-          # 유저 데이터 가져오기
-          res_data = requests.get('https://api.intra.42.fr/v2/users/sunwkim', headers={'Authorization': f'Bearer {token}'})
-          data = res_data.json()
+          # 2. 유저 정보 (Level, Blackhole) 가져오기
+          user_res = requests.get('https://api.intra.42.fr/v2/users/sunwkim', headers={'Authorization': f'Bearer {token}'})
+          data = user_res.json()
           
-          # 모든 과정 중 가장 레벨이 높은 것 선택 (공통과정 포함)
-          cursus_list = data.get('cursus_users', [])
-          if cursus_list:
-              best_cursus = max(cursus_list, key=lambda x: x.get('level', 0))
-              level = best_cursus.get('level', '0.00')
-              bh = (best_cursus.get('blackhole_expiration_date') or 'Completed').split('T')[0]
+          # 공통 과정(id: 21) 정보를 찾거나 가장 높은 레벨 선택
+          cursus_users = data.get('cursus_users', [])
+          core_info = next((c for c in cursus_users if c.get('cursus_id') == 21), max(cursus_users, key=lambda x: x.get('level', 0)) if cursus_users else {})
+          
+          level = core_info.get('level', '0.00')
+          bh = (core_info.get('blackhole_expiration_date') or 'Completed').split('T')[0]
+          
+          stats_text = f'### 📊 42 Stats (sunwkim)\n- **Level:** {level}\n- **Blackhole:** {bh}\n- **Campus:** 42 Lausanne\n'
+          
+          # 3. README.md 업데이트
+          start_tag, end_tag = '', ''
+          if os.path.exists('README.md'):
+              with open('README.md', 'r', encoding='utf-8') as f:
+                  content = f.read()
           else:
-              level, bh = '0.00', 'N/A'
+              content = ''
+
+          # 정규표현식으로 태그 사이 내용 교체 (태그가 없으면 새로 생성)
+          pattern = f'{re.escape(start_tag)}.*?{re.escape(end_tag)}'
+          replacement = f'{start_tag}\n{stats_text}\n{end_tag}'
           
-          stats = f'### 📊 42 Stats (sunwkim)\n- **Level:** {level}\n- **Blackhole:** {bh}\n- **Campus:** 42 Lausanne\n'
-          
-          # README 읽기
-          with open('README.md', 'r', encoding='utf-8') as f:
-              content = f.read()
-          
-          # 중복 제거 및 치환 로직 (Split 방식)
-          start_tag = ''
-          end_tag = ''
-          
-          if start_tag in content and end_tag in content:
-              before = content.split(start_tag)[0]
-              after = content.split(end_tag)[-1]
-              new_content = f'{before.strip()}\n\n{start_tag}\n{stats}\n{end_tag}\n\n{after.strip()}'
+          if re.search(pattern, content, re.DOTALL):
+              new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
           else:
-              new_content = f'{content.strip()}\n\n{start_tag}\n{stats}\n{end_tag}'
+              new_content = content.strip() + f'\n\n{replacement}\n'
               
           with open('README.md', 'w', encoding='utf-8') as f:
               f.write(new_content)
