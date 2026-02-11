@@ -25,69 +25,35 @@ jobs:
           FT_UID: ${{ secrets.FT_UID }}
           FT_SECRET: ${{ secrets.FT_SECRET }}
         run: |
-          python <<EOF
-          import os
-          import requests
-          import re
-          import sys
+          python -c "
+          import os, requests
+          
+          # 1. 토큰 및 데이터 가져오기
+          uid, secret = os.getenv('FT_UID'), os.getenv('FT_SECRET')
+          res = requests.post('https://api.intra.42.fr/oauth/token', data={'grant_type': 'client_credentials', 'client_id': uid, 'client_secret': secret})
+          token = res.json().get('access_token')
+          user_data = requests.get('https://api.intra.42.fr/v2/users/sunwkim', headers={'Authorization': f'Bearer {token}'}).json()
+          
+          # 2. 본과정(id: 21) 정보 추출
+          cursus_users = user_data.get('cursus_users', [])
+          core = next((c for c in cursus_users if c.get('cursus_id') == 21), cursus_users[-1] if cursus_users else {})
+          
+          level = core.get('level', '0.00')
+          bh = (core.get('blackhole_expiration_date') or 'Completed').split('T')[0]
+          
+          # 3. 파일 내용 작성 (기존 내용 무시하고 새로 생성)
+          # 기존 README의 상단 고정 내용을 여기에 적으세요.
+          header = '# 🚀 Hello, I am sunwkim!\n\n'
+          stats = f'\n### 📊 42 Stats\n- **Level:** {level}\n- **Blackhole:** {bh}\n- **Campus:** 42 Lausanne\n'
+          
+          with open('README.md', 'w', encoding='utf-8') as f:
+              f.write(header + stats)
+          "
 
-          try:
-              # 1. 환경변수 확인
-              uid = os.environ.get('FT_UID')
-              secret = os.environ.get('FT_SECRET')
-              if not uid or not secret:
-                  print("Error: API Keys not found.")
-                  sys.exit(1)
-
-              # 2. 토큰 발급
-              token_url = "https://api.intra.42.fr/oauth/token"
-              payload = {
-                  "grant_type": "client_credentials",
-                  "client_id": uid,
-                  "client_secret": secret
-              }
-              r = requests.post(token_url, data=payload)
-              r.raise_for_status()
-              token = r.json()['access_token']
-
-              # 3. 데이터 가져오기
-              user_url = "https://api.intra.42.fr/v2/users/sunwkim"
-              headers = {"Authorization": f"Bearer {token}"}
-              r = requests.get(user_url, headers=headers)
-              r.raise_for_status()
-              data = r.json()
-
-              # 4. 공통 과정(Cursus ID: 21) 찾기
-              cursus_users = data.get('cursus_users', [])
-              target_cursus = None
-              
-              # ID 21 검색
-              for c in cursus_users:
-                  if c.get('cursus_id') == 21:
-                      target_cursus = c
-                      break
-              
-              # 없으면 가장 높은 레벨 사용
-              if target_cursus is None and cursus_users:
-                  target_cursus = max(cursus_users, key=lambda x: x.get('level', 0))
-
-              # 정보 추출 (split 함수 제거 -> 슬라이싱 사용)
-              if target_cursus:
-                  level = target_cursus.get('level', 0)
-                  bh_date = target_cursus.get('blackhole_expiration_date')
-                  if bh_date is None:
-                      bh = "✅ Completed"
-                  else:
-                      bh = str(bh_date)[:10] # 날짜 앞 10자리만 자름
-              else:
-                  level = "N/A"
-                  bh = "N/A"
-
-              # 5. 출력할 텍스트 만들기
-              stats_content = f"### 📊 42 Stats (sunwkim)\n- **Level:** {level}\n- **Blackhole:** {bh}\n- **Campus:** 42 Lausanne"
-              
-              start_tag = ""
-              end_tag = ""
-              full_block = f"{start_tag}\n{stats_content}\n{end_tag}"
-
-              # 6. README 업데이트 (정규식
+      - name: Commit and Push
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git commit -m "Update 42 stats" || exit 0
+          git push
