@@ -12,11 +12,69 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Update 42 Stats
-        uses: remi-dupre/42-stats-action@v1.1
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          ft_api_uid: ${{ secrets.FT_UID }}
-          ft_api_secret: ${{ secrets.FT_SECRET }}
-          user_id: sunwkim
-          # README.md 파일의 어디에 넣을지 지정
-          readme_path: README.md
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Update README
+        env:
+          FT_UID: ${{ secrets.FT_UID }}
+          FT_SECRET: ${{ secrets.FT_SECRET }}
+        run: |
+          python <<EOF
+          import os, requests, sys
+
+          uid = os.getenv('FT_UID')
+          secret = os.getenv('FT_SECRET')
+
+          # 1. 토큰 발급
+          auth_res = requests.post('https://api.intra.42.fr/oauth/token', data={
+              'grant_type': 'client_credentials',
+              'client_id': uid,
+              'client_secret': secret
+          })
+          token = auth_res.json().get('access_token')
+
+          # 2. 데이터 조회
+          user_res = requests.get('https://api.intra.42.fr/v2/users/sunwkim', 
+                                  headers={'Authorization': f'Bearer {token}'})
+          data = user_res.json()
+
+          # 3. 본과정 레벨 찾기 (Common Core id: 21)
+          cursus_list = data.get('cursus_users', [])
+          core = next((c for c in cursus_list if c.get('cursus_id') == 21), 
+                      max(cursus_list, key=lambda x: x.get('level', 0)) if cursus_list else {})
+
+          level = core.get('level', '0.00')
+          # 블랙홀 날짜 처리
+          bh_raw = core.get('blackhole_expiration_date')
+          bh = bh_raw[:10] if bh_raw else "Completed"
+
+          # 4. README.md 파일 새로 쓰기 (Overwrite)
+          # 기존 내용을 무시하고 새로 작성하므로 split 에러가 날 수 없음
+          readme_content = f"""# 🚀 Hello, I am sunwkim!
+
+### 📊 42 Stats
+- **Level:** {level}
+- **Blackhole:** {bh}
+- **Campus:** 42 Lausanne
+- **Last Updated:** $(date +'%Y-%m-%d')
+
+---
+*This profile is automatically updated using 42 API.*
+"""
+          with open('README.md', 'w', encoding='utf-8') as f:
+              f.write(readme_content)
+          EOF
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git commit -m "Update 42 stats" || exit 0
+          git push
