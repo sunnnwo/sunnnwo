@@ -14,7 +14,6 @@
 | :--- | :--- |
 | **Level** | 10.42 |
 | **Blackhole** | 🌌 Completed (Infinite) |
-| **Location** | Saint-Sulpice, Switzerland |
 | **Contact** | [sunwkim@student.42lausanne.ch](mailto:sunwkim@student.42lausanne.ch) |
 
 ---
