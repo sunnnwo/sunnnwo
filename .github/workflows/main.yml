@@ -12,48 +12,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Update 42 Stats
+        uses: remi-dupre/42-stats-action@v1.1
         with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Update README
-        env:
-          FT_UID: ${{ secrets.FT_UID }}
-          FT_SECRET: ${{ secrets.FT_SECRET }}
-        run: |
-          python -c "
-          import os, requests
-          
-          # 1. 토큰 및 데이터 가져오기
-          uid, secret = os.getenv('FT_UID'), os.getenv('FT_SECRET')
-          res = requests.post('https://api.intra.42.fr/oauth/token', data={'grant_type': 'client_credentials', 'client_id': uid, 'client_secret': secret})
-          token = res.json().get('access_token')
-          user_data = requests.get('https://api.intra.42.fr/v2/users/sunwkim', headers={'Authorization': f'Bearer {token}'}).json()
-          
-          # 2. 본과정(id: 21) 정보 추출
-          cursus_users = user_data.get('cursus_users', [])
-          core = next((c for c in cursus_users if c.get('cursus_id') == 21), cursus_users[-1] if cursus_users else {})
-          
-          level = core.get('level', '0.00')
-          bh = (core.get('blackhole_expiration_date') or 'Completed').split('T')[0]
-          
-          # 3. 파일 내용 작성 (기존 내용 무시하고 새로 생성)
-          # 기존 README의 상단 고정 내용을 여기에 적으세요.
-          header = '# 🚀 Hello, I am sunwkim!\n\n'
-          stats = f'\n### 📊 42 Stats\n- **Level:** {level}\n- **Blackhole:** {bh}\n- **Campus:** 42 Lausanne\n'
-          
-          with open('README.md', 'w', encoding='utf-8') as f:
-              f.write(header + stats)
-          "
-
-      - name: Commit and Push
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add README.md
-          git commit -m "Update 42 stats" || exit 0
-          git push
+          ft_api_uid: ${{ secrets.FT_UID }}
+          ft_api_secret: ${{ secrets.FT_SECRET }}
+          user_id: sunwkim
+          # README.md 파일의 어디에 넣을지 지정
+          readme_path: README.md
